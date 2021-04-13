@@ -1,13 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
 
-export const Button = (props) => {
-    console.log('children:' + props.children)
+export const Button = ({onClick, className, outline, children}) => {
     return (
-        <button className={
-            classNames("button", {
-                "button--outlined": props.outline,
+        <button onClick={onClick} className={
+            classNames("button", className, {
+                "button--outlined": outline,
             })
-        }>{props.children}</button>
+        }>{children}</button>
     );
 }
