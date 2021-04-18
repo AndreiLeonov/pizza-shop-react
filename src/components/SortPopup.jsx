@@ -1,8 +1,13 @@
 import React from 'react';
 
 export const SortPopup = () => {
+  const [isVisiblePopup, setIsVisiblePopup] = React.useState(false);
 
-    const [visiblePopup, setVisiblePopup] = React.useState(false);
+  const togglePopup = () => {
+    setIsVisiblePopup(!isVisiblePopup);
+  };
+
+  React.useEffect(() => {}, []);
 
   return (
     <div className="sort">
@@ -19,15 +24,17 @@ export const SortPopup = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={togglePopup}>популярности</span>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+      {isVisiblePopup && (
+        <div className="sort__popup">
+          <ul>
+            <li className="active">популярности</li>
+            <li>цене</li>
+            <li>алфавиту</li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
