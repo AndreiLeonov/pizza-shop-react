@@ -3,7 +3,7 @@ import { Header, Categories } from "./components";
 
 function App() {
 
-  const [] = React.useState()
+  
 
   return (
     <div className="wrapper">
