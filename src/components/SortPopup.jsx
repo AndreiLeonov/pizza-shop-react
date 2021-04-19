@@ -1,16 +1,34 @@
 import React from 'react';
 
-export const SortPopup = () => {
+export const SortPopup = ({ items }) => {
   const [isVisiblePopup, setIsVisiblePopup] = React.useState(false);
+  const [activeItem, setActiveItem] = React.useState(0);
+
+  const onSelectItem = (index) => {
+    setActiveItem(index);
+    setIsVisiblePopup(false);
+  };
 
   const togglePopup = () => {
     setIsVisiblePopup(!isVisiblePopup);
   };
 
-  React.useEffect(() => {}, []);
+  //for open/close popup
+  const outsidePopupClickHandler = (e) => {
+    if (!e.path.includes(sortRef.current)) {
+      setIsVisiblePopup(false);
+    }
+  };
+
+  const sortRef = React.useRef(); //save link on DOM element with className='sort'
+
+  React.useEffect(() => {
+    document.body.addEventListener('click', outsidePopupClickHandler);
+    console.log(sortRef.current);
+  }, []);
 
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -29,9 +47,15 @@ export const SortPopup = () => {
       {isVisiblePopup && (
         <div className="sort__popup">
           <ul>
-            <li className="active">популярности</li>
-            <li>цене</li>
-            <li>алфавиту</li>
+            {items &&
+              items.map((el, index) => (
+                <li
+                  className={activeItem === index ? 'active' : ''}
+                  onClick={() => onSelectItem(index)}
+                  key={`${el}_${index}`}>
+                  {el}
+                </li>
+              ))}
           </ul>
         </div>
       )}
