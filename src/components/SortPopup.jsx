@@ -3,6 +3,7 @@ import React from 'react';
 export const SortPopup = ({ items }) => {
   const [isVisiblePopup, setIsVisiblePopup] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(0);
+  const currentActiveItem = items[activeItem];
 
   const onSelectItem = (index) => {
     setActiveItem(index);
@@ -42,7 +43,7 @@ export const SortPopup = ({ items }) => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={togglePopup}>популярности</span>
+        <span onClick={togglePopup}>{currentActiveItem}</span>
       </div>
       {isVisiblePopup && (
         <div className="sort__popup">
