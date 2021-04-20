@@ -1,11 +1,13 @@
 import React from 'react';
 import logoSvg from '../assets/img/pizza-logo.svg';
 import { Button } from './Button';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
-    return (
-        <div className="header">
-        <div className="container">
+  return (
+    <div className="header">
+      <div className="container">
+        <Link to="/">
           <div className="header__logo">
             <img width="38" src={logoSvg} alt="Pizza logo" />
             <div>
@@ -13,8 +15,10 @@ export const Header = () => {
               <p>самая вкусная пицца во вселенной</p>
             </div>
           </div>
-          <div className="header__cart">
-              <Button className="button--cart">
+        </Link>
+        <div className="header__cart">
+          <Link to="/cart">
+            <Button className="button--cart">
               <span>520 ₽</span>
               <div className="button__delimiter"></div>
               <svg
@@ -46,13 +50,10 @@ export const Header = () => {
                 />
               </svg>
               <span>3</span>
-
-              </Button>
-            
-              
-        
-          </div>
+            </Button>
+          </Link>
         </div>
       </div>
-    );
-}
+    </div>
+  );
+};
