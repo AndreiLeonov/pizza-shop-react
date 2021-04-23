@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export const Pizza = ({ imageUrl, name, price, types, sizes }) => {
   const [activeType, setActiveType] = React.useState(types[0]);
@@ -68,4 +69,21 @@ export const Pizza = ({ imageUrl, name, price, types, sizes }) => {
       </div>
     </div>
   );
+};
+
+//isRequired - обязательно
+Pizza.propTypes = {
+  imageUrl: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  types: PropTypes.arrayOf(PropTypes.number).isRequired,
+  sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
+Pizza.defaultProps = {
+  imageUrl: "",
+  name: "NoName",
+  price: 0,
+  types: [],
+  sizes: [],
 };
