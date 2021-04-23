@@ -1,12 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export const Pizza = ({ imageUrl, name, price, types }) => {
+export const Pizza = ({ imageUrl, name, price, types, sizes }) => {
   const [activeType, setActiveType] = React.useState(types[0]);
-  const typeNames = ['тонкое', 'традиционное'];
+  const availableTypes = ['тонкое', 'традиционное'];
+
+  const availableSizes = [26, 30, 40];
+  const [availableSize, setAvailableSize] = React.useState(sizes[0]);
 
   const pizzaTypeHandler = (index) => {
     setActiveType(index);
+  };
+
+  const pizzaSizeHandler = (index) => {
+    setAvailableSize(index);
   };
 
   return (
@@ -15,22 +22,30 @@ export const Pizza = ({ imageUrl, name, price, types }) => {
       <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {typeNames.map((type, index) => (
+          {availableTypes.map((type, index) => (
             <li
               key={type + index}
               onClick={() => pizzaTypeHandler(index)}
               className={classNames({
-                'active': activeType === index,
-                'disabled': !types.includes(index),
+                active: activeType === index,
+                disabled: !types.includes(index),
               })}>
               {type}
             </li>
           ))}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {availableSizes.map((size, index) => (
+            <li
+              key={size + index}
+              onClick={() => pizzaSizeHandler(index)}
+              className={classNames({
+                active: availableSize === index,
+                disabled: !sizes.includes(size),
+              })}>
+              {size} см.
+            </li>
+          ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
