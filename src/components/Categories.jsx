@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Categories = ({ items, onClick }) => {
+export const Categories = ({ items }) => {
   const [activeItem, setActiveItem] = React.useState(null);
 
   const onSelectItem = (index) => {
