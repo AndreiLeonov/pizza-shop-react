@@ -25,7 +25,6 @@ export const SortPopup = ({ items }) => {
 
   React.useEffect(() => {
     document.body.addEventListener('click', outsidePopupClickHandler);
-    console.log(sortRef.current);
   }, []);
 
   return (

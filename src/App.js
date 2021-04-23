@@ -12,8 +12,6 @@ function App() {
     .then((json) => setPizzasData(json.pizzas))
   }, []);
 
-  console.log(pizzasData);
-
   return (
     <div className="wrapper">
       <Header />
