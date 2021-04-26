@@ -3,7 +3,7 @@ import React from 'react';
 export const SortPopup = ({ items }) => {
   const [isVisiblePopup, setIsVisiblePopup] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(0);
-  const currentActiveItem = items[activeItem];
+  const currentActiveItem = items[activeItem].name;
 
   const onSelectItem = (index) => {
     setActiveItem(index);
@@ -53,8 +53,8 @@ export const SortPopup = ({ items }) => {
                 <li
                   className={activeItem === index ? 'active' : ''}
                   onClick={() => onSelectItem(index)}
-                  key={`${el}_${index}`}>
-                  {el}
+                  key={`${el.name}_${index}`}>
+                  {el.name}
                 </li>
               ))}
           </ul>
