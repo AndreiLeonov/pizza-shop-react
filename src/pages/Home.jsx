@@ -3,7 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Categories, SortPopup, Pizza } from '../components';
 import { setCategory } from '../redux/actions/filters';
 
-const arrayOfCategories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
+const arrayOfCategories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const arrayOfSortItems = [
+  {
+    name: 'популярности',
+    type: 'popular',
+  },
+  {
+    name: 'цене',
+    type: 'price',
+  },
+  {
+    name: 'алфавиту',
+    type: 'alphabet',
+  },
+]
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -22,20 +36,7 @@ export const Home = () => {
           onClick={onSelectCategory}
         />
         <SortPopup
-          items={[
-            {
-              name: 'популярности',
-              type: 'popular',
-            },
-            {
-              name: 'цене',
-              type: 'price',
-            },
-            {
-              name: 'алфавиту',
-              type: 'alphabet',
-            },
-          ]}
+          items={arrayOfSortItems}
         />
       </div>
       <h2 className="content__title">Все пиццы</h2>
