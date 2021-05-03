@@ -28,7 +28,7 @@ export const Home = ({ data }) => {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {data.map((elem) => (
+        {data && data.map((elem) => (
           <Pizza key={elem.id} {...elem} />
         ))}
       </div>

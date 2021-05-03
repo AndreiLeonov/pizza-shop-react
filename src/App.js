@@ -3,21 +3,24 @@ import { Header } from './components';
 import { Home, ShoppingCart } from './pages';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import { setPizzas } from './redux/actions/pizzas';
+import { useDispatch, useSelector } from 'react-redux';
 
-function App() {
-  const [pizzasData, setPizzasData] = React.useState([]);
+const App = () => {
 
-  // USE FETCH:
-  // React.useEffect(() => {
-  //   fetch('http://localhost:3000/db.json')
-  //   .then((res) => res.json())
-  //   .then((json) => setPizzasData(json.pizzas))
-  // }, []);
+  const dispatch = useDispatch();
+  const {pizzasData} = useSelector(({pizzas, filters }) => {
+    return {
+      pizzasData: pizzas.items,
+      sortBy: filters.sortBy,
+    };
+  });
 
-  // USE AXIOS:
   React.useEffect(() => {
-    axios.get('http://localhost:3000/db.json').then((res) => setPizzasData(res.data.pizzas));
+    axios.get('http://localhost:3000/db.json').then((res) => dispatch(setPizzas(res.data.pizzas)));
   }, []);
+
+  console.log(pizzasData);
 
   return (
     <div className="wrapper">
@@ -27,7 +30,8 @@ function App() {
         <Route exact path="/cart" component={ShoppingCart} />
       </div>
     </div>
-  );
+  ); 
+
 }
 
 export default App;
