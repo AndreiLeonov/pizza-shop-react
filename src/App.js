@@ -5,13 +5,14 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import { setPizzas } from './redux/actions/pizzas';
 import { useDispatch } from 'react-redux';
+import { fetchPizzas } from './redux/actions/pizzas';
 
 const App = () => {
 
   const dispatch = useDispatch();
   
   React.useEffect(() => {
-    axios.get('http://localhost:3001/pizzas').then((res) => dispatch(setPizzas(res.data)));
+    dispatch(fetchPizzas());
   }, []);
 
   return (
