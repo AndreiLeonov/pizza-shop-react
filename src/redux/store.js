@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   pizzas: pizzas,
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
