@@ -6,5 +6,11 @@ export const setPizzas = (items) => ({
 });
 
 export const fetchPizzas = () => (dispatch) => {
+  dispatch(setLoaded(false));
   axios.get('http://localhost:3001/pizzas').then((res) => dispatch(setPizzas(res.data)));
 };
+
+export const setLoaded = (value) => ({
+  type: 'PIZZAS/SET_LOADED',
+  payload: value,
+})
