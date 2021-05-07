@@ -9,14 +9,17 @@ const arrayOfSortItems = [
   {
     name: 'популярности',
     type: 'popular',
+    order: 'desc',
   },
   {
     name: 'цене',
     type: 'price',
+    order: 'desc',
   },
   {
     name: 'алфавиту',
-    type: 'alphabet',
+    type: 'name',
+    order: 'asc',
   },
 ]
 
@@ -28,7 +31,7 @@ export const Home = () => {
   const {category, sortBy} = useSelector(({filters}) => filters);
 
   React.useEffect(() => {
-    dispatch(fetchPizzas());
+    dispatch(fetchPizzas(sortBy, category));
   }, [category, sortBy]);
 
   const onSelectCategory = useCallback((index) => {
